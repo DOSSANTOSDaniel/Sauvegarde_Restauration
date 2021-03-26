@@ -51,9 +51,9 @@ function rep
 	then
     	if mkdir -p $1
     	then
-        	echo -e "\nCréation du repertoire $1 termine!\n"
+        	echo -e "\nCréation du répertoire $1 termine!\n"
     	else
-        	echo -e "\nErreur de la création du repertoire $1\n"
+        	echo -e "\nErreur de la création du répertoire $1\n"
         	exit
         fi
     fi
@@ -72,9 +72,9 @@ done
 #Test
 if [ -d $doc ]
 then
-	echo -e "\nLe repertoire Documents existe bien\n"
+	echo -e "\nLe répertoire Documents existe bien\n"
 else
-	echo -e "\nAttention le repertoire Documents n'existe pas!\n"
+	echo -e "\nAttention le répertoire Documents n'existe pas!\n"
 	exit
 fi
 
@@ -82,18 +82,18 @@ fi
 cd $doc
 if tar -cvpjf $rep_bak_rep/$rep$dat.tar.bz2 .
 then
-    echo -e "\nCompression terminé\n"
+    echo -e "\n Compression terminé \n"
 else
-    echo -e "\nErreur de la Compression\n"
+    echo -e "\n Erreur de la Compression \n"
     exit
 fi
 
 #Sauvegarde des applications
 if dpkg --get-selections > $rep_bak_ap/$ap$dat
 then
-	echo -e "\nLe point de restauration des applications a ete cree avec succes!\n"
+	echo -e "\nLe point de restauration des applications a été créé avec succès!\n"
 else
-	echo -e "\nLa creation du point de restauration des applications a echoué\n"
+	echo -e "\nLa création du point de restauration des applications a echoué\n"
 fi
 
 mv $rep_log/log_sauv $rep_log/log_sauv$dat

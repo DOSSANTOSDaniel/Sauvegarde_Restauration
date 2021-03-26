@@ -7,7 +7,7 @@
 #----------------------------------------------------------------#
 # DATE DE CRÉATION: 18/07/2018
 #----------------------------------------------------------------#
-# USAGE: ./restauration.sh
+# USAGE: ./script_restauration.sh
 #----------------------------------------------------------------#
 # BASH VERSION: GNU bash 4.3.30
 #================================================================#
@@ -43,25 +43,25 @@ echo -e "\nVoici la dernière sauvegarde: $last \n"
 echo -e "\n Début de la restauration "
 echo -e "--------------------------\n"
 
-#Teste si le repertoire personnel existe
+#Teste si le répertoire personnel existe
 if [ -d $main ]
 then
-	echo -e "\nLe repertoire personnel existe bien\n"
+	echo -e "\nLe répertoire personnel existe bien\n"
 else
-	echo -e "\nAttention le repertoire personnel indiqué n'existe pas!\n"
+	echo -e "\nAttention le répertoire personnel indiqué n'existe pas!\n"
 	exit
 fi	
 
 if [ ! -d $rep_bak_ap ]
 then
-	echo -e "\nErreur le repertoire $rep_bak_ap n'existe pas\n"
+	echo -e "\nErreur le répertoire $rep_bak_ap n'existe pas\n"
 	exit
 elif [ ! -d $rep_bak_rep ]
 then
-	echo -e "\nErreur le repertoire $rep_bak_rep n'existe pas\n"
+	echo -e "\nErreur le répertoire $rep_bak_rep n'existe pas\n"
 	exit
 else
-	echo -e "\nLes repertoires de sauvegarde existent bien!\n"
+	echo -e "\nLes répertoires de sauvegarde existent bien!\n"
 fi 
 
 dernier $rep_bak_rep $rep
@@ -70,9 +70,9 @@ cd $rep_bak_rep
 
 if tar xvpfj $last -C $main 
 then
-	echo -e "\nVotre dossier a ete restauré\n"
+	echo -e "\nVotre dossier a été restauré\n"
 else
-	echo -e "\nla restauration du dossier a echoue\n"
+	echo -e "\nla restauration du dossier a échoué\n"
 	exit
 fi
 
@@ -82,8 +82,8 @@ dpkg --clear-selections
 if dpkg --set-selections < $rep_bak_ap/$last
 then
 	apt-get dselect-upgrade -y
-	echo -e "\nLa sauvegarde des applications a ete restauré\n"
+	echo -e "\nLa sauvegarde des applications a été restauré\n"
 else
-	echo -e "\nla restauration a echoue\n"
+	echo -e "\nla restauration a échoué\n"
 	exit
 fi
